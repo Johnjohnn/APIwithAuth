@@ -22,7 +22,7 @@ const getCountryById =  (req, res) =>{
         if(err){
             throw error
         }
-        response.status(200).json(results.rows)
+        res.status(200).json(results.rows)
     })
 }
 const createCountry = (req , res) => {
@@ -31,6 +31,21 @@ const createCountry = (req , res) => {
         if (error){
             throw error
         }
-        response.status(201).send("A new country has been added to the database")
+        res.status(201).send("A new country has been added to the database")
     })
+}
+const UpdateCountry = (req, res) =>{
+    const id = parseInt(req.params.id)
+    const {name, capital } = request.body
+    
+    pool.query(
+        "UPDATE countries SET name = $1, capita = $2 WHERE id = $3", 
+        [name, capital, id],
+        (error, results) =>{
+            if (error){
+                throw error
+            }
+            res.status(200).send("country has been updated in the database")
+        }
+    )
 }
