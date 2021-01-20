@@ -25,3 +25,12 @@ const getCountryById =  (req, res) =>{
         response.status(200).json(results.rows)
     })
 }
+const createCountry = (req , res) => {
+    const {name , capital} = req.body
+    pool.query("INSERT INTO countrires (name, capital) VALUES ($1, $2)", [name, capital], (error, results) =>{
+        if (error){
+            throw error
+        }
+        response.status(201).send("A new country has been added to the database")
+    })
+}
