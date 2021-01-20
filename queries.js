@@ -6,9 +6,9 @@ const pool = new Pool({
     password: "634712",
     port:5432,
 })
+                                                                                     // this query will get all the countries from the DATABSE 
 
-
-const getCountires = (req, res)=> {
+const getCountries = (req, res)=> {
     pool.query("SELECT * FROM countries ORDER BY id ASC", (error, results) =>{
       if (error){
           throw error
@@ -16,7 +16,7 @@ const getCountires = (req, res)=> {
       response.status(200).json(results.rows)
     })
 }
-
+                                                                                      // this query will get a country from the database from ID 
 const getCountryById =  (req, res) =>{
     pool.query("SELECT * FROM countries WHERE id =$1", [id], (err, results) =>{
         if(err){
@@ -34,6 +34,7 @@ const createCountry = (req , res) => {
         res.status(201).send("A new country has been added to the database")
     })
 }
+                                                                                        // this query will update a country from the database
 const UpdateCountry = (req, res) =>{
     const id = parseInt(req.params.id)
     const {name, capital } = request.body
@@ -48,4 +49,14 @@ const UpdateCountry = (req, res) =>{
             res.status(200).send("country has been updated in the database")
         }
     )
+}
+                                                                                         // this query will DELETE a country from the database 
+const deleteCountry = (res, res) =>{
+    const id = parseInt(request.params.id)
+    pool.query("DETE FROM countries WHERE id = $1", [id], (error, results) =>{
+        if (error){
+            throw error
+        }
+        res.status(200).send(`Country deleted with ID: ${id}`)
+    })
 }
