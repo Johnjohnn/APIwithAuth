@@ -13,11 +13,16 @@ app.use(
 )
 
 // GET Request to root URL (/)
-app.get('/', (request, response) => {
-  response.json({Welcome: `welcom ${process.env.COHORT}`,
-   fact: process.env.FUN_FACT})
+// app.get('/', (request, response) => {
+//   response.json({Welcome: `welcome ${process.env.COHORT}`,
+//    fact: process.env.FUN_FACT})
+// })
+app.get("/", (req, res)=>{
+    res.status(200).json({
+        message:`Welcome ${process.env.COHORT}`,
+        fact: process.env.FUN_FACT || "i have no fun facts"
+    })
 })
-
 // Endpoints
 
 app.get('/countries', db.getCountries)
