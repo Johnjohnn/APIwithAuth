@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": " nodemon --require dotenv/config index.js",
     "start": "nodemon index.js"
   },
   "keywords": [],
@@ -14,5 +15,9 @@
     "express": "^4.17.1",
     "nodemon": "^2.0.7",
     "pg": "^8.5.1"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "dotenv": "^8.2.0"
   }
 }

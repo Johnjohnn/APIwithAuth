@@ -2,7 +2,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const app = express()
 const db = require('./queries')
-const port = 3000
+const port = process.env.PORT || 3000
 
 app.use(bodyParser.json())
 
@@ -14,7 +14,8 @@ app.use(
 
 // GET Request to root URL (/)
 app.get('/', (request, response) => {
-  response.json({Welcome: 'How to create API with Node.js,EXPRESS and PostgreSQL' })
+  response.json({Welcome: `welcom ${process.env.COHORT}`,
+   fact: process.env.FUN_FACT})
 })
 
 // Endpoints
